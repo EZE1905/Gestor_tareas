@@ -1,5 +1,5 @@
 #Codigo del gestor de tareas
-from mgestor_tareas import mostrar_menu
+from mgestor_tareas import mostrar_menu,agregar_tarea,eliminar_tarea,ver_tareas
 
 tareas = []
 
@@ -9,26 +9,26 @@ while True:
     eleccion = int(input("Elija una opcion: "))
     print("")
 
-    if eleccion > 6:
+    if eleccion not in [1,2,3,4,5,6]:
         print("")
         print("Opcion incorreta, intente de nuevo")
         print("")
     elif eleccion == 1:
-        tarea_nueva = input("Escriba su tarea: ")
-        tareas.append(tarea_nueva)
-    elif eleccion == 2: 
-        for indice,tarea in enumerate(tareas):
-            print(f"{indice + 1}: {tarea}")
-        tarea_eliminada = int(input("Indique el numero de tarea que quiere eliminar: "))
-        tareas.pop(tarea_eliminada - 1)
+        agregar_tarea(tareas)
+    elif eleccion == 2:
+        if len(tareas) > 0:
+            eliminar_tarea(tareas)
+        else:
+            print("No hay tareas que eliminar")
     elif eleccion == 3: 
-        print("----TAREAS----")
-        for indice,tarea in enumerate(tareas):
-            print(f"{indice + 1}: {tarea}")
+        ver_tareas(tareas)
     elif eleccion == 4: 
         print("tareas guardadas")
         print("")
     elif eleccion == 5:
-        tareas.clear()
+        if len(tareas) > 0:
+            tareas.clear()
+        else:
+            print("No hay tareas que eliminar")
     elif eleccion == 6:
         break
