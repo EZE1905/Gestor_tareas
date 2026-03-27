@@ -12,18 +12,33 @@ def mostrar_menu():
     print("")
 
 def agregar_tarea(tareas):
-    tarea_nueva = input("Escriba su tarea: ")
-    tareas.append(tarea_nueva)
-    return tareas
+        print("------------------")
+        print("Ponga salir para volver al menu.")
+        print("")
+        while True:
+            tarea_nueva = input("Escriba su tarea: ")
+            if tarea_nueva.lower() == "salir":
+                break
+            else:
+                tareas.append(tarea_nueva)
+        return tareas
 
 def eliminar_tarea(tareas):
     for indice,tarea in enumerate(tareas):
         print(f"{indice + 1}: {tarea}")
-    tarea_eliminada = int(input("Indique el numero de tarea que quiere eliminar: "))
-    if tarea_eliminada > len(tareas):
-        print("Tarea inexistente, intente de nuevo")
-    else:
-        tareas.pop(tarea_eliminada - 1)
+    while True:
+        try:
+            print("")
+            tarea_eliminada = int(input("Indique el numero de tarea que quiere eliminar: "))
+            if 1 <= tarea_eliminada <= len(tareas):
+                tareas.pop(tarea_eliminada - 1)
+                break
+            else:
+                print("")
+                print("Tarea inexistente, intente de nuevo")
+        except:
+            print("")
+            print("ingrese el numero de la tarea que desea eliminar")
     return tareas
 
 def ver_tareas(tareas):

@@ -13,7 +13,7 @@ while True:
         print("")
         print("Opcion incorreta, intente de nuevo")
         print("")
-    elif eleccion == 1:
+    elif eleccion == 1: 
         agregar_tarea(tareas)
     elif eleccion == 2:
         if len(tareas) > 0:
@@ -21,9 +21,12 @@ while True:
         else:
             print("No hay tareas que eliminar")
     elif eleccion == 3: 
-        ver_tareas(tareas)
+        if len(tareas) > 0:
+            ver_tareas(tareas)
+        else:
+            print("No hay tareas anotadas")
     elif eleccion == 4: 
-        print("tareas guardadas")
+        print("Tareas guardadas")
         print("")
     elif eleccion == 5:
         if len(tareas) > 0:
