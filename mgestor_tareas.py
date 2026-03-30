@@ -21,6 +21,7 @@ def agregar_tarea(tareas):
                 break
             else:
                 tareas.append(tarea_nueva)
+                print("TAREA AGREGADA CORRECTAMENTE")
         return tareas
 
 def eliminar_tarea(tareas):
