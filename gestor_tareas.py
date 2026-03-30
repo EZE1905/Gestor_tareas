@@ -1,7 +1,13 @@
 #Codigo del gestor de tareas
-from mgestor_tareas import mostrar_menu,agregar_tarea,eliminar_tarea,ver_tareas
+from mgestor_tareas import mostrar_menu,agregar_tarea,eliminar_tarea,ver_tareas,vaciar_lista,abrir_archivo
 
 tareas = []
+
+with open ("txt\\lista_tareas.txt") as archivo:
+    for linea in archivo:
+        linea_limpia = linea.strip()
+        tareas.append(linea_limpia)
+
 
 while True:
     #MENU
@@ -28,13 +34,9 @@ while True:
             else:
                 print("No hay tareas anotadas")
         elif eleccion == 4: 
-            print("Tareas guardadas")
-            print("")
+            abrir_archivo()
         elif eleccion == 5:
-            if len(tareas) > 0:
-                tareas.clear()
-            else:
-                print("No hay tareas que eliminar")
+            vaciar_lista(tareas)
         elif eleccion == 6:
             break
     except ValueError:

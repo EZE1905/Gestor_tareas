@@ -1,12 +1,14 @@
 #Funciones del gestor de tareas
+import os
+
 def mostrar_menu():
     #MENU
     print("")
     print("----MENU----")
     print("1. Agregar Tarea")
     print("2. Eliminar Tarea")
-    print("3. Ver Tareas")
-    print("4. Guardar Tareas")
+    print("3. Ver Tareas (consola)")
+    print("4. Ver Archivo")
     print("5. Eliminar todas las Tareas")
     print("6. Salir")
     print("")
@@ -21,8 +23,11 @@ def agregar_tarea(tareas):
                 break
             else:
                 tareas.append(tarea_nueva)
-                print("TAREA AGREGADA CORRECTAMENTE")
-        return tareas
+                with open ("txt\\lista_tareas.txt","a") as archivo:
+                    archivo.write(f"{tarea_nueva}\n")
+                    print("TAREA AGREGADA CORRECTAMENTE.")
+                    print("")
+
 
 def eliminar_tarea(tareas):
     for indice,tarea in enumerate(tareas):
@@ -32,15 +37,33 @@ def eliminar_tarea(tareas):
             print("")
             tarea_eliminada = int(input("Indique el numero de tarea que quiere eliminar: "))
             if 1 <= tarea_eliminada <= len(tareas):
-                tareas.pop(tarea_eliminada - 1)
+                eliminacion = tareas.pop(tarea_eliminada - 1)
+                with open ("txt\\lista_tareas.txt", "w") as archivo:
+                    for linea in tareas:
+                        archivo.write(f"{linea}\n")
+                print(f"Tarea eliminada: {eliminacion}")
                 break
             else:
                 print("")
-                print("Tarea inexistente, intente de nuevo")
-        except:
+                print("Tarea inexistente, intente de nuevo.")
+        except ValueError:
             print("")
-            print("ingrese el numero de la tarea que desea eliminar")
-    return tareas
+            print("ingrese el numero de la tarea que desea eliminar.")
+
+def vaciar_lista(tareas):
+    if len(tareas) > 0:
+        tareas.clear()
+        print("SE ELIMINARON TODAS LAS TAREAS CORRECTAMENTE")
+    else:
+        print("No hay tareas que eliminar")
+    with open ("txt\\lista_tareas.txt", "w") as archivo:
+        archivo.writelines(tareas)
+
+def abrir_archivo():
+    try:
+        os.startfile("txt\\lista_tareas.txt")    
+    except Exception:
+        print("Archivo inexistente")
 
 def ver_tareas(tareas):
     print("----TAREAS----")
