@@ -7,33 +7,51 @@
     <title>Gestor de tareas</title>
 </head>
 <body>
-    <h2 class="titulo">Gestor de tareas</h2>
-        <table>
-            <thead>
-                <th>Fecha</th>
-                <th>Tarea</th>
-                <th>Acciones</th>
-            </thead>
-            <tbody>
-                {% for tarea in tareas %}
-                    <tr>
-                        <td>{{ tarea.fecha }}</td>
-                        <td>{{ tarea.tarea }}</td>
-                        <td>
-                            <div class="botones">
-                                <form action="">
-                                    <input type="hidden">
-                                    <button class="btn_editar">Editar</button>
-                                </form>
-                                <form action="">
-                                    <input type="hidden">
-                                    <button class="btn_eliminar">Eliminar</button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div class="main">
+        <h2 class="titulo">Gestor de tareas</h2>
+        <div id="contenedor_msj"></div>
+            <table>
+                <thead>
+                    <th>Fecha</th>
+                    <th>Tarea</th>
+                    <th>Acciones</th>
+                </thead>
+                <tbody>
+                    {% for tarea in tareas %}
+                        <tr class="nueva-tarea">
+                            <td>{{ tarea.fecha }}</td>
+                            <td>{{ tarea.tarea }}</td>
+                            <td>
+                                <div class="botones">
+                                    <form action="/eliminar" method="POST">
+                                        <input type="hidden" name="indice" value="{{ loop.index0 }}">
+                                        <button class="btn_eliminar">Eliminar</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="form-section">
+                <h2 class="titulo">Agregar y editar tarea</h2>
+                <div class="contenedor">
+                    <form action="/agregar_tareas" method="POST">
+                        <label for="">Tarea</label>
+                        <input type="text" name="tarea" required>
+                        <label for="">Fecha</label>
+                        <input type="date" name="fecha" required>
+                        <button class="btn_agregar">Agregar</button>
+                    </form>
+                </div>
+            </div>
+    </div>
+    <!-- MENSAJES FLASH -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        <script>
+            window.mensajes = {{ messages | tojson | safe }};
+        </script>
+    {% endwith %}
+    <script src="{{ url_for('static', filename='js/layout.js')}}"></script>
 </body>
 </html>
