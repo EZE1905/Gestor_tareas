@@ -1,6 +1,8 @@
 [
     {
         "tarea": "gym",
-        "fecha": "2026-04-17"
+        "fecha": "2026-04-17",
+        "prioridad": "alta",
+        "estado": "completada"
     }
 ]

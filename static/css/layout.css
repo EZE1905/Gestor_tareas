@@ -134,6 +134,18 @@ button {
     color: white;
 }
 
+.contenedor select {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #334155;
+    color: white;
+}
+
+.contenedor select:focus {
+    outline: 2px solid #3b82f6;
+}
+
 .contenedor input:focus {
     outline: 2px solid #3b82f6;
 }
@@ -223,4 +235,37 @@ button {
     background-color: #fee2e2;
     color: #991b1b;
     border-color: #ef4444;
+}
+
+.btn_estado {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn_completada {
+    background-color: #22c55e; /* verde */
+    color: white;
+}
+
+.btn_completada:hover {
+    background-color: #16a34a;
+    transform: scale(1.05);
+}
+
+.btn_incompleta {
+    background-color: #ef4444; /* rojo */
+    color: white;
+}
+
+.btn_incompleta:hover {
+    background-color: #dc2626;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
 }

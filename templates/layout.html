@@ -14,13 +14,16 @@
                 <thead>
                     <th>Fecha</th>
                     <th>Tarea</th>
+                    <th>Prioridad</th>
                     <th>Acciones</th>
+                    <th>Estado</th>
                 </thead>
                 <tbody>
                     {% for tarea in tareas %}
                         <tr class="nueva-tarea">
                             <td>{{ tarea.fecha }}</td>
-                            <td>{{ tarea.tarea }}</td>
+                            <td>{{ tarea.tarea.capitalize() }}</td>
+                            <td>{{ tarea.prioridad.capitalize() }}</td>
                             <td>
                                 <div class="botones">
                                     <form action="/eliminar" method="POST">
@@ -29,6 +32,17 @@
                                     </form>
                                 </div>
                             </td>
+                            <td>
+                                <form action="/estado" method="POST">
+                                    {% if tarea.estado == "completada"%}
+                                        <input type="hidden" name="indice_btn" value="{{ loop.index0 }}">
+                                        <button class="btn_estado btn_completada">{{ tarea.estado.capitalize() }}</button>
+                                    {% elif tarea.estado == "incompleta" %}   
+                                        <input type="hidden" name="indice_btn" value="{{ loop.index0 }}">
+                                        <button class="btn_estado btn_incompleta">{{ tarea.estado.capitalize() }}</button>
+                                    {% endif %}
+                                </form>
+                            </td>   
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -41,6 +55,12 @@
                         <input type="text" name="tarea" required>
                         <label for="">Fecha</label>
                         <input type="date" name="fecha" required>
+                        <label for="">Prioridad</label>
+                        <select name="prioridad" id="">
+                            <option value="alta">Alta</option>
+                            <option value="media">Media</option>
+                            <option value="baja">Baja</option>
+                        </select>
                         <button class="btn_agregar">Agregar</button>
                     </form>
                 </div>
