@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+    <title>Gestor de tareas</title>
+</head>
+<body>
+    <h2 class="titulo">Gestor de tareas</h2>
+        <table>
+            <thead>
+                <th>Fecha</th>
+                <th>Tarea</th>
+                <th>Acciones</th>
+            </thead>
+            <tbody>
+                {% for tarea in tareas %}
+                    <tr>
+                        <td>{{ tarea.fecha }}</td>
+                        <td>{{ tarea.tarea }}</td>
+                        <td>
+                            <div class="botones">
+                                <form action="">
+                                    <input type="hidden">
+                                    <button class="btn_editar">Editar</button>
+                                </form>
+                                <form action="">
+                                    <input type="hidden">
+                                    <button class="btn_eliminar">Eliminar</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</body>
+</html>

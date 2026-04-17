@@ -1,17 +1,15 @@
 #Funciones del gestor de tareas
 import os
+import json
 
-def mostrar_menu():
-    #MENU
-    print("")
-    print("----MENU----")
-    print("1. Agregar Tarea")
-    print("2. Eliminar Tarea")
-    print("3. Ver Tareas (consola)")
-    print("4. Ver Archivo")
-    print("5. Eliminar todas las Tareas")
-    print("6. Salir")
-    print("")
+def leer_tareas():
+    try:
+        with open ("tareas.json") as archivo:
+            tareas = json.load(archivo)
+    except FileNotFoundError:
+        with open ("tareas.json", "w") as archivo:
+            tareas = json.dump(tareas,archivo)
+    return tareas
 
 def agregar_tarea(tareas):
         print("------------------")
