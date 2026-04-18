@@ -50,10 +50,6 @@ td {
     border-bottom: 1px solid #475569;
 }
 
-tr:hover {
-    background-color: #334155;
-}
-
 /* BOTONES */
 .botones {
     display: flex;
@@ -268,4 +264,22 @@ button {
 
 button:active {
     transform: scale(0.95);
+}
+
+.prioridad-alta {
+    background-color: #fee2e2; /* rojo suave */
+    border-left: 5px solid #ef4444; /* rojo fuerte */
+    color: #0f172a;
+}
+
+.prioridad-media {
+    background-color: #fef9c3; /* amarillo suave */
+    border-left: 5px solid #eab308; /* amarillo fuerte */
+    color: #0f172a;
+}
+
+.prioridad-baja {
+    background-color: #dcfce7; /* verde suave */
+    border-left: 5px solid #22c55e; /* verde fuerte */
+    color: #0f172a;
 }
